@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Secondary rendering check when Aquamarine's NVIDIA offscreen capture stalls.
+"""Secondary rendering and pointer-click checks independent of Aquamarine capture.
 Uses the testbed's private-environment helpers, never its running instance.
 """
 import importlib.util

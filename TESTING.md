@@ -21,10 +21,11 @@
 - Service diagnostics show workspaces scoped to TESTBED-1 = 1, TESTBED-2 = 2;
   after the tested Lua dispatch, TESTBED-1 changes to 3 while TESTBED-2 stays 2.
   Events/poll recovery work without a global-active-workspace assumption.
-- **Aquamarine/NVIDIA capture limitation:** native headless GBM allocations fail
-  on this machine. The testbed's private Wayland-inside-headless-Sway fallback
-  creates the correct output geometry, but `grim` against that Hyprland instance
-  repeatedly times out. No screenshot is claimed from that compositor.
+- Native Aquamarine headless GBM allocations fail on this NVIDIA machine, so
+  testing uses the testbed's **Wayland-inside-private-headless-Sway** backend.
+  Initial capture attempts stalled. With `--backend offscreen` and animations
+  disabled, the final fresh run successfully captured **both Hyprland outputs**,
+  before/hidden/restored states, and all three Control Center tabs.
 - As a secondary real rendering test, exact Noctalia was started under a separate
   private **Sway headless/pixman** instance (`.work/sway`) with the same isolation.
   This produced actual 1920×1080 screenshots and successful front hide/show.
@@ -41,15 +42,19 @@
 
 Under `/data/SSD1/dotfilesprojects/noctalia-retro/.work/screens/`:
 
-- `sway-before.png`, `sway-hidden.png`, `sway-restored.png` — full 1920×1080
-- `top-bar.png` — 1920×28 crop; `front-panel.png` — 840×76 crop
-- `sway-toolchest-click.png`, `sway-net-click.png`
+- `before.png`, `hidden.png`, `restored.png` — **Hyprland**, full 1920×1080
+- `second-monitor.png` — Hyprland's second 1920×1080 output
+- `panel-network.png`, `panel-bluetooth.png`, `panel-audio.png` — Hyprland
+- `top-bar.png` — 1920×28 Hyprland crop; `front-panel.png` — 840×76 Hyprland crop
+- `sway-before.png`, `sway-hidden.png`, `sway-restored.png` — secondary Sway run
+- `sway-toolchest-click.png`, `sway-net-click.png` — actual pointer clicks
 - `sway-panel-network.png`, `sway-panel-bluetooth.png`, `sway-panel-audio.png`
 
-Evidence: `.work/noctalia.log`, `.work/isolated.log`,
+Evidence: `.work/noctalia.log`, `.work/isolated-final-capture.log`,
 `.work/monitors-{before,hidden,restored}.json`, `.work/sway/noctalia.log`,
 `.work/sway-smoke.log`, `.work/sway/launcher-clicked`.
-The black test desktop is intentional: Noctalia wallpaper is disabled.
+The dark solid test desktop is intentional: Noctalia wallpaper is disabled.
+Hyprland's debug-start warning is visible; no desktop startup/session was used.
 
 ## Reproduce without touching a desktop session
 
@@ -58,9 +63,10 @@ Run from this repository only; mutable files are confined to `.work/`.
 ```sh
 nix build
 nix build 'git+file:///data/SSD1/dotfilesprojects/retro-testbed' --out-link .work/testbed
-# Attempts Hyprland captures, records timeouts but continues IPC/reservation tests.
+# Captures both private Hyprland outputs and tests IPC/reserved space.
+# Records capture timeouts if a driver/backend stalls; inspect the log/screens.
 timeout 140 bash tests/isolated.sh
-# To rerun non-rendering checks quickly after the capture failure is established:
+# To rerun non-rendering checks quickly:
 SKIP_HYPR_SHOTS=1 timeout 80 bash tests/isolated.sh
 ```
 
@@ -80,8 +86,8 @@ nix develop --command bash -c '
   cc -I.work tests/click.c .work/pointer.c $(pkg-config --cflags --libs wayland-client) -o .work/click
 '
 timeout 100 python3 tests/sway-smoke.py
-magick .work/screens/sway-before.png -crop 1920x28+0+0 .work/screens/top-bar.png
-magick .work/screens/sway-before.png -crop 840x76+540+1004 .work/screens/front-panel.png
+magick .work/screens/before.png -crop 1920x28+0+0 +repage .work/screens/top-bar.png
+magick .work/screens/before.png -crop 840x76+540+1004 +repage .work/screens/front-panel.png
 ```
 
 The Sway test only uses private sockets and a private bus, never the user's Sway
@@ -95,8 +101,9 @@ Read-only diagnostic IPC (target the testbed with `testbed run`, not a bare msg)
 
 ## Not verified / decisions
 
-- Actual Hyprland screenshots remain blocked by the testbed render/capture path;
-  the supplied real screenshots are explicitly Sway-headless, not Hyprland.
+- The native Aquamarine headless allocator is not usable here; Hyprland was
+  verified using the private offscreen Wayland backend instead. Neither connects
+  to a live display. The supplementary Sway tests are labelled separately.
 - Real PipeWire FFT/volume, BlueZ adapter, battery and lock authentication are not
   exercised: their buses/endpoints are deliberately inaccessible. No battery is
   installed here. Hardware fallbacks render without script errors.
