@@ -1,0 +1,152 @@
+# Install as config.toml; includes win first, this profile wins last.
+[include]
+autoload = false
+files = ["profiles/user-base.toml"]
+
+[plugins]
+enabled = ["retro/noctalia-retro"]
+auto_update = "none"
+
+[[plugins.source]]
+name = "noctalia-retro"
+kind = "path"
+# Replaced with the immutable package path by the Nix build.
+location = "@PLUGIN_ROOT@"
+enabled = true
+
+[bar]
+order = ["main", "front"]
+
+[bar.main]
+position = "top"
+thickness = 28
+start = ["retro-toolchest", "retro-clock", "retro-spectrum"]
+center = []
+end = ["retro-net", "retro-bt", "retro-vol", "retro-bat"]
+enabled = true
+background_opacity = 1.0
+compositor_blur = false
+radius = 0
+radius_top_left = 0
+radius_top_right = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+concave_edge_corners = false
+shadow = false
+contact_shadow = false
+border_width = 0.0
+margin_edge = 0
+margin_ends = 0
+padding = 3
+widget_spacing = 5
+hover_highlight = false
+font_family = "TeX Gyre Heros"
+font_weight = 700
+capsule = false
+capsule_radius = 0.0
+capsule_thickness = 1.0
+reserve_space = true
+auto_hide = false
+smart_auto_hide = false
+
+[bar.front]
+position = "bottom"
+enabled = true
+background_opacity = 1.0
+compositor_blur = false
+radius = 0
+radius_top_left = 0
+radius_top_right = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+concave_edge_corners = false
+shadow = false
+contact_shadow = false
+border_width = 0.0
+margin_edge = 0
+hover_highlight = false
+font_family = "TeX Gyre Heros"
+font_weight = 700
+capsule = false
+capsule_radius = 0.0
+capsule_thickness = 1.0
+thickness = 76
+margin_ends = 540
+padding = 0
+widget_spacing = 0
+reserve_space = true
+auto_hide = false
+smart_auto_hide = false
+start = []
+center = ["retro-front"]
+end = []
+# For another resolution: margin_ends = (logical output width - 840) / 2.
+# [bar.front.monitor."eDP-1"]
+# margin_ends = 540
+
+[widget.retro-toolchest]
+type = "retro/noctalia-retro:toolchest"
+[widget.retro-clock]
+type = "retro/noctalia-retro:clock"
+[widget.retro-spectrum]
+type = "retro/noctalia-retro:spectrum"
+audio_spectrum = true
+[widget.retro-net]
+type = "retro/noctalia-retro:net"
+[widget.retro-bt]
+type = "retro/noctalia-retro:bt"
+[widget.retro-vol]
+type = "retro/noctalia-retro:vol"
+[widget.retro-bat]
+type = "retro/noctalia-retro:bat"
+[widget.retro-front]
+type = "retro/noctalia-retro:front"
+
+[plugin_settings."retro/noctalia-retro"]
+font_family = "TeX Gyre Heros"
+clock_format = "%H:%M"
+clock_icon = ""
+network_interface = ""
+status_poll_ms = 5000
+terminal_icon = ""
+terminal_command = "kitty"
+files_icon = ""
+files_command = "thunar"
+browser_icon = ""
+browser_command = "firefox"
+editor_icon = ""
+editor_command = "kitty -e nvim"
+settings_icon = ""
+settings_command = "noctalia msg settings"
+trash_icon = ""
+trash_command = "thunar trash:///"
+
+[plugin_settings."retro/noctalia-retro".workspace_ids]
+# "HDMI-A-1" = "1,2,3,4"
+# "DP-1" = "5,6,7,8"
+
+[theme]
+source = "custom"
+custom_palette = "Workstation95"
+mode = "light"
+shell_mode = "light"
+sync_color_scheme = false
+
+[shell]
+font_family = "TeX Gyre Heros"
+corner_radius_scale = 0.0
+popup_shadows = false
+
+[shell.animation]
+enabled = false
+
+[shell.panel]
+transparency_mode = "solid"
+shadow = false
+
+[system.monitor]
+enabled = true
+
+[theme.templates]
+enable_builtin_templates = false
+enable_community_templates = false

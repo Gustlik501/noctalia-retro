@@ -1,0 +1,21 @@
+{
+  "settings.font_family": "Font family",
+  "settings.clock_format": "Clock format (strftime)",
+  "settings.clock_icon": "Optional clock PNG",
+  "settings.status_poll_ms": "Status polling interval (ms)",
+  "settings.network_interface": "Interface label (empty = default route)",
+  "settings.workspace_ids": "Fixed workspace IDs per monitor (comma-separated)",
+  "settings.audio_spectrum": "Enable audio spectrum",
+  "settings.terminal_icon": "Terminal PNG",
+  "settings.terminal_command": "Terminal command",
+  "settings.files_icon": "Files PNG",
+  "settings.files_command": "Files command",
+  "settings.browser_icon": "Browser PNG",
+  "settings.browser_command": "Browser command",
+  "settings.editor_icon": "Editor PNG",
+  "settings.editor_command": "Editor command",
+  "settings.settings_icon": "Settings PNG",
+  "settings.settings_command": "Settings command",
+  "settings.trash_icon": "Trash PNG",
+  "settings.trash_command": "Trash command"
+}

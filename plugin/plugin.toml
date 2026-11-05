@@ -1,0 +1,176 @@
+id = "retro/noctalia-retro"
+name = "Workstation '95"
+version = "0.1.0"
+plugin_api = 34
+author = "retro"
+license = "MIT"
+description = "IRIX text status bar and CDE-style front panel for Noctalia 5.4.1."
+tags = ["bar", "retro", "workspaces"]
+dependencies = ["hyprctl", "socat", "ip", "wpctl", "bluetoothctl"]
+
+[[setting]]
+key = "font_family"
+type = "string"
+label_key = "settings.font_family"
+default = "TeX Gyre Heros"
+
+[[setting]]
+key = "clock_format"
+type = "string"
+label_key = "settings.clock_format"
+default = "%H:%M"
+
+[[setting]]
+key = "clock_icon"
+type = "file"
+label_key = "settings.clock_icon"
+default = ""
+extensions = [".png"]
+
+[[setting]]
+key = "status_poll_ms"
+type = "int"
+label_key = "settings.status_poll_ms"
+default = 5000
+min = 1000
+max = 60000
+
+[[setting]]
+key = "network_interface"
+type = "string"
+label_key = "settings.network_interface"
+default = ""
+
+[[setting]]
+key = "workspace_ids"
+type = "string_map"
+label_key = "settings.workspace_ids"
+default = {}
+
+[[setting]]
+key = "terminal_icon"
+type = "file"
+label_key = "settings.terminal_icon"
+default = ""
+extensions = [".png"]
+
+[[setting]]
+key = "terminal_command"
+type = "string"
+label_key = "settings.terminal_command"
+default = "kitty"
+
+[[setting]]
+key = "files_icon"
+type = "file"
+label_key = "settings.files_icon"
+default = ""
+extensions = [".png"]
+
+[[setting]]
+key = "files_command"
+type = "string"
+label_key = "settings.files_command"
+default = "thunar"
+
+[[setting]]
+key = "browser_icon"
+type = "file"
+label_key = "settings.browser_icon"
+default = ""
+extensions = [".png"]
+
+[[setting]]
+key = "browser_command"
+type = "string"
+label_key = "settings.browser_command"
+default = "firefox"
+
+[[setting]]
+key = "editor_icon"
+type = "file"
+label_key = "settings.editor_icon"
+default = ""
+extensions = [".png"]
+
+[[setting]]
+key = "editor_command"
+type = "string"
+label_key = "settings.editor_command"
+default = "kitty -e nvim"
+
+[[setting]]
+key = "settings_icon"
+type = "file"
+label_key = "settings.settings_icon"
+default = ""
+extensions = [".png"]
+
+[[setting]]
+key = "settings_command"
+type = "string"
+label_key = "settings.settings_command"
+default = "noctalia msg settings"
+
+[[setting]]
+key = "trash_icon"
+type = "file"
+label_key = "settings.trash_icon"
+default = ""
+extensions = [".png"]
+
+[[setting]]
+key = "trash_command"
+type = "string"
+label_key = "settings.trash_command"
+default = "thunar trash:///"
+
+[[service]]
+id = "state"
+entry = "service.luau"
+
+[[widget]]
+id = "toolchest"
+entry = "toolchest.luau"
+hover_highlight = false
+
+[[widget]]
+id = "clock"
+entry = "clock.luau"
+hover_highlight = false
+
+[[widget]]
+id = "spectrum"
+entry = "spectrum.luau"
+hover_highlight = false
+
+[[widget.setting]]
+key = "audio_spectrum"
+type = "bool"
+label_key = "settings.audio_spectrum"
+default = true
+
+[[widget]]
+id = "net"
+entry = "net.luau"
+hover_highlight = false
+
+[[widget]]
+id = "bt"
+entry = "bt.luau"
+hover_highlight = false
+
+[[widget]]
+id = "vol"
+entry = "vol.luau"
+hover_highlight = false
+
+[[widget]]
+id = "bat"
+entry = "bat.luau"
+hover_highlight = false
+
+[[widget]]
+id = "front"
+entry = "front.luau"
+hover_highlight = false

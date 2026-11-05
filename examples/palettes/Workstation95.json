@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "light": {
+    "primary": "#2040C0", "on_primary": "#FFFFFF",
+    "secondary": "#4992A7", "on_secondary": "#000000",
+    "tertiary": "#BE9292", "on_tertiary": "#000000",
+    "error": "#A00000", "on_error": "#FFFFFF",
+    "surface": "#C0C0C0", "on_surface": "#000000",
+    "surface_container": "#C0C0C0", "on_surface_variant": "#303030",
+    "outline_variant": "#808080", "shadow": "#000000",
+    "hover": "#DFDFDF", "on_hover": "#000000",
+    "terminal": {
+      "background": "#000000", "foreground": "#C0C0C0",
+      "cursor": "#FFFFFF", "cursor_text": "#000000",
+      "selection_bg": "#C0C0C0", "selection_fg": "#000000",
+      "normal": {
+        "black": "#000000", "red": "#A00000", "green": "#008000", "yellow": "#808000",
+        "blue": "#2040C0", "magenta": "#800080", "cyan": "#008080", "white": "#C0C0C0"
+      },
+      "bright": {
+        "black": "#808080", "red": "#FF4040", "green": "#20C040", "yellow": "#FFFF00",
+        "blue": "#6080FF", "magenta": "#FF80FF", "cyan": "#80FFFF", "white": "#FFFFFF"
+      }
+    }
+  },
+  "dark": {
+    "primary": "#2040C0", "on_primary": "#FFFFFF",
+    "secondary": "#4992A7", "on_secondary": "#000000",
+    "tertiary": "#BE9292", "on_tertiary": "#000000",
+    "error": "#A00000", "on_error": "#FFFFFF",
+    "surface": "#C0C0C0", "on_surface": "#000000",
+    "surface_container": "#C0C0C0", "on_surface_variant": "#303030",
+    "outline_variant": "#808080", "shadow": "#000000",
+    "hover": "#DFDFDF", "on_hover": "#000000",
+    "terminal": {
+      "background": "#000000", "foreground": "#C0C0C0",
+      "cursor": "#FFFFFF", "cursor_text": "#000000",
+      "selection_bg": "#C0C0C0", "selection_fg": "#000000",
+      "normal": {
+        "black": "#000000", "red": "#A00000", "green": "#008000", "yellow": "#808000",
+        "blue": "#2040C0", "magenta": "#800080", "cyan": "#008080", "white": "#C0C0C0"
+      },
+      "bright": {
+        "black": "#808080", "red": "#FF4040", "green": "#20C040", "yellow": "#FFFF00",
+        "blue": "#6080FF", "magenta": "#FF80FF", "cyan": "#80FFFF", "white": "#FFFFFF"
+      }
+    }
+  }
+}
